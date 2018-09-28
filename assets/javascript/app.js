@@ -41,12 +41,21 @@ $(document).ready(function() {
             response.data.forEach(element => {
                 var url = element.images.original.url;
                 var title = element.title;
-                
+
+                var gifTile = $("<div>");
+                gifTile.addClass("gif-tile");
+                gifTile.addClass("text-center");
+
                 var gif = $("<img>");
                 gif.attr("src", url);
                 gif.attr("alt", title);
+                gifTile.append(gif);
 
-                $("#gif-container").append(gif);
+                var rating = $("<h5>");
+                rating.text("Rating: " + element.rating);
+                gifTile.append(rating);
+
+                $("#gif-container").append(gifTile);
             });
         });
     })
