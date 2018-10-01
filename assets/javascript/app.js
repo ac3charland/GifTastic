@@ -39,7 +39,8 @@ $(document).ready(function() {
             console.log(response);
 
             response.data.forEach(element => {
-                var url = element.images.original.url;
+                var gifURL = element.images.original.url;
+                var stillURL = element.images.original_still.url;
                 var title = element.title;
 
                 var gifTile = $("<div>");
@@ -47,8 +48,14 @@ $(document).ready(function() {
                 gifTile.addClass("text-center");
 
                 var gif = $("<img>");
-                gif.attr("src", url);
+                gif.addClass("gif");
+                gif.addClass("img-fluid");
+                gif.attr("src", stillURL);
                 gif.attr("alt", title);
+                gif.attr("state", "still");
+                gif.attr("gifURL", gifURL);
+                gif.attr("stillURL", stillURL);
+
                 gifTile.append(gif);
 
                 var rating = $("<h5>");
@@ -58,5 +65,19 @@ $(document).ready(function() {
                 $("#gif-container").append(gifTile);
             });
         });
-    })
-})
+    });
+
+    $(document).on("click", ".gif", function() {
+        var state = $(this).attr("state");
+
+        if (state == "still") {
+            var gifURL = $(this).attr("gifURL")
+            $(this).attr("state", "gif");
+            $(this).attr("src", gifURL);
+        } else if (state == "gif") {
+            var stillURL = $(this).attr("stillURL");
+            $(this).attr("state", "still");
+            $(this).attr("src", stillURL);
+        }
+    });
+});
