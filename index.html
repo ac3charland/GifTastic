@@ -7,12 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Nanum+Gothic" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/styles/style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="assets/javascript/app.js"></script>
 </head>
 <body>
     <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center header">
+                <h1>TV Show GIFs</h1>
+                <h5>Click a show to see GIFs!</h5>
+                <h6>Click any GIF to play/pause.</h6>
+            </div>
+        </div>
         <!-- buttons and add functionality -->
         <div class="row">
             <!-- buttons -->
@@ -23,18 +31,21 @@
             <div class="col-md-4">
                 <form>
                     <div class="form-group">
-                        <label for="newTopic">Add a new topic!</label>
-                        <input type="topic" class="form-control" id="newTopic" placeholder="Enter a topic">
+                        <label for="newTopic"><h4>Add a new show!</h4></label>
+                        <input type="topic" class="form-control" id="newTopic" placeholder="Enter a show">
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
         <!-- gif display -->
-        <div class="row">
-            <div id="gif-container" class="col-md-12">
+        <div id="gif-container" class="row">
+            <div id="col1" class="col-md-4"></div>
+            <div id="col2" class="col-md-4"></div>
+            <div id="col3" class="col-md-4"></div>
+        </div>
+        <div id="more" class="row">
 
-            </div>
         </div>
     </div>
 

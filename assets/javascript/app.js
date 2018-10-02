@@ -1,5 +1,5 @@
 var key = "uoRDvxXuQcBJD859qYRawyPH26j2wynX";
-var topics = ["happy", "sad", "angry", "jealous"]
+var topics = ["Archer", "Bojack Horseman", "Game of Thrones", "Big Mouth", "Star Trek: The Next Generation", "Arrested Development"];
 
 function displayTopics() {
     $("#buttons").empty();
@@ -8,7 +8,7 @@ function displayTopics() {
         var button = $("<button>");
         button.attr("value", topic);
         button.addClass("btn");
-        button.addClass("btn-primary");
+        button.addClass("btn-success");
         button.addClass("topic");
         button.text(topic);
         $("#buttons").append(button);
@@ -26,7 +26,7 @@ $(document).ready(function() {
     })
 
     $(document).on("click", ".topic", function() {
-        $("#gif-container").empty();
+        $("#gif-container .col-md-4").empty();
         
         var topic = $(this).attr("value");
 
@@ -37,6 +37,7 @@ $(document).ready(function() {
             method: "GET"
         }).then(function (response) {
             console.log(response);
+            var columnCount = 1;
 
             response.data.forEach(element => {
                 var gifURL = element.images.original.url;
@@ -46,6 +47,11 @@ $(document).ready(function() {
                 var gifTile = $("<div>");
                 gifTile.addClass("gif-tile");
                 gifTile.addClass("text-center");
+
+                var titleBar = $("<h6>");
+                titleBar.text(title);
+                titleBar.addClass("title");
+                gifTile.append(titleBar);
 
                 var gif = $("<img>");
                 gif.addClass("gif");
@@ -59,10 +65,17 @@ $(document).ready(function() {
                 gifTile.append(gif);
 
                 var rating = $("<h5>");
-                rating.text("Rating: " + element.rating);
+                rating.text("Rating: " + element.rating.toUpperCase());
+                rating.addClass("rating");
                 gifTile.append(rating);
 
-                $("#gif-container").append(gifTile);
+                $("#col" + columnCount).append(gifTile);
+
+                if (columnCount == 3) {
+                    columnCount = 1;
+                } else {
+                    columnCount++;
+                }
             });
         });
     });
